@@ -6,12 +6,25 @@ import sys
 import json
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
+    """Defines the HolbertonBnB command interpreter.
+
+    Attributes:
+        prompt (str): The command prompt.
+    """
+
     prompt = "(hbnb) "
     __classes = {
-            "BaseModel"
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amenity",
+        "Review"
     }
 
     def do_quit(self, arg):
@@ -101,12 +114,11 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         else:
             print("** no instance found **")
-        
-    def do_all(self, args):
+
+	    def do_all(self, args):
         class_name = args.split()[0] if args else None
 
-
-        if class_name and not self.check_class(class_name):
+	if class_name and not self.check_class(class_name):
             print("** class doesn't exist **")
             return
 
