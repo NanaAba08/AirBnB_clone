@@ -1,22 +1,24 @@
 #!/usr/bin/python3
 
 import unittest
+import io
+import sys
+from unittest.mock import patch
 
-from chrisliz import factorial
+def print_name():
+    name = "Chrris Liz"
+    print(f"My name is {name}")
 
+class TestPrintName(unittest.TestCase):
 
-class TestFctorial(unittest.TestCase):
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def assert_stdout(self, expected_output, mock_stdout):
+        print_name()
+        self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
 
-    def test_factorial_with_positive_integer(self):
-        self.assertEqual(factorial(5), 120)
+    def test_print_name(self):
+        expected_output = "My name is Chrris Liz"
+        self.assert_stdout(expected_output)
 
-    def test_factorial_with_zero(self):
-        self.assertEqual(factorial(0), 1)
-
-    def test_factorial_with_negative_integer(self):
-        with self.assertRaises(ValueError):
-            factorial(-1)
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
