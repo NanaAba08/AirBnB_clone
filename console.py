@@ -141,12 +141,12 @@ class HBNBCommand(cmd.Cmd):
             return
 
         arg_list = args.split()
-        if len(args_list) < 2:
+        if len(arg_list) < 2:
             print("** instance id missing **")
             return
 
-        class_name = args_list[0]
-        instance_id = args_list[1]
+        class_name = arg_list[0]
+        instance_id = arg_list[1]
 
         if not self.check_class(class_name):
             print("** class doesn't exist **")
@@ -156,13 +156,13 @@ class HBNBCommand(cmd.Cmd):
         key = "{}.{}".format(class_name, instance_id)
         instance = all_instances.get(key, None)
         if instance:
-            del all_intances[key]
+            del all_instances[key]
             storage.save()
         else:
             print("** no instance found **")
 
-        def do_all(self, args):
-            class_name = args.split()[0] if args else None
+    def do_all(self, args):
+        class_name = args.split()[0] if args else None
 
         if class_name and not self.check_class(class_name):
             print("** class doesn't exist **")
