@@ -2,7 +2,18 @@
 
 
 def factorial(x):
-    """calculating the factorial of a non-negative integer"""
+    """
+    calculating the factorial of a non-negative integer
+
+    Args:
+        x(int): the non-negative integr for which the factorail is calculated
+
+    Returns:
+        int: the factorial of the integer inputed
+
+    Raises:
+        ValueError: if the inputed integer is a negative number
+    """
     if x < 0:
         raise ValueError("Factorial is not defined for negative numbers")
     if x == 0:
