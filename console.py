@@ -33,6 +33,7 @@ def parse(arg):
         retl.append(curly_braces.group())
         return retl
 
+
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter.
 
@@ -160,10 +161,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
-	    def do_all(self, args):
-        class_name = args.split()[0] if args else None
+        def do_all(self, args):
+            class_name = args.split()[0] if args else None
 
-	if class_name and not self.check_class(class_name):
+        if class_name and not self.check_class(class_name):
             print("** class doesn't exist **")
             return
 
@@ -184,7 +185,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) < 2:
             print("** instance id missing **")
             return
-            
+
         if len(args_list) < 3:
             print("** attribute name missing **")
             return
@@ -206,7 +207,6 @@ class HBNBCommand(cmd.Cmd):
         key = "{}.{}".format(class_name, instance_id)
         instance = all_instances.get(key, None)
 
-
         if instance:
             try:
                 atttribute_value = eval(attribute_value)
@@ -217,12 +217,10 @@ class HBNBCommand(cmd.Cmd):
             instance.save()
         else:
             print("** no instance found **")
-            
 
-    
+
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        #non-interactive mode
         commands = " ".join(sys.argv[1:])
         HBNBCommand().run_command(commands)
     else:
