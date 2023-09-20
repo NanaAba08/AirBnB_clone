@@ -219,13 +219,13 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
 
-    if __name__ == '__main__':
-        if len(sys.argv) > 1:
-            commands = " ".join(sys.argv[1:])
-            HBNBCommand().run_command(commands)
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        commands = " ".join(sys.argv[1:])
+        HBNBCommand().run_command(commands)
+    else:
+        if sys.stdin.isatty():
+            HBNBCommand().cmdloop()
         else:
-            if sys.stdin.isatty():
-                HBNBCommand().cmdloop()
-            else:
-                for line in sys.stdin:
-                    HBNBCommand().run_command(line.strip())
+            for line in sys.stdin:
+                HBNBCommand().run_command(line.strip())
