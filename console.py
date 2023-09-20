@@ -222,7 +222,7 @@ class HBNBCommand(cmd.Cmd):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         commands = " ".join(sys.argv[1:])
-        HBNBCommand().run_command(commands)
+            HBNBCommand().run_command(commands)
     else:
         if sys.stdin.isatty():
             HBNBCommand().cmdloop()
